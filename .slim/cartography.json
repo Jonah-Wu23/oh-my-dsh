@@ -1,0 +1,51 @@
+{
+  "metadata": {
+    "version": "1.0.0",
+    "last_run": "2026-08-15T04:35:07.887540Z",
+    "root": "F:\\oh-my-dsh",
+    "include_patterns": [
+      "package.json",
+      "preset/**/*.mjs",
+      "preset/**/*.yml",
+      "zero-anchored-standard/**/*.mjs",
+      "zero-anchored-standard/**/*.yml"
+    ],
+    "exclude_patterns": [
+      "test/**",
+      "docs/**",
+      "node_modules/**"
+    ],
+    "exceptions": []
+  },
+  "file_hashes": {
+    "package.json": "36944b353ab6401fc466ac49c4e3274b",
+    "preset\\agent.cordis.yml": "e2d0863b7c1560243d293e741198f4f6",
+    "preset\\anchor\\turn-anchor.mjs": "0401bc2bcb057231279e47d23ee6d3b1",
+    "preset\\capabilities\\manifests.mjs": "a1084516bb50fa6de527a6ac47357796",
+    "preset\\capabilities\\registry.mjs": "998a6e026dcf6db42287fbfbc56b3143",
+    "preset\\capability-runtime.mjs": "73ad3254f011527c5597e7a061d6fa7e",
+    "preset\\events\\projections.mjs": "64db959dfc9de4be10d84cbad85d18b1",
+    "preset\\minimal-surface.mjs": "9459e299949a6044dd06d8621f82b3fd",
+    "preset\\preset.yml": "3b7ea9435cda47be0a5dfb3862e3d55c",
+    "preset\\router\\controller.mjs": "6951bd7dc558f4af412e1544e80ce26f",
+    "preset\\router\\schema.mjs": "68d947732761b92288447457bd1b3663",
+    "preset\\router\\snapshot.mjs": "8c0b7708d954550f496dba7f1bdc85a3",
+    "preset\\shell\\path-map.mjs": "71115c0b691b6b14e695ae6a04078267",
+    "preset\\tool-bootstrap.mjs": "947dfc99d49d6d253509f1d1b789586d",
+    "preset\\windows-msys2.mjs": "3df24ef87d8b65370b394c39eddfe009",
+    "zero-anchored-standard\\agent.cordis.yml": "f7e2afef0eb9b8c090337822ea7be287",
+    "zero-anchored-standard\\anchor-turn.mjs": "ffb55f2265911db08bdec04155617541",
+    "zero-anchored-standard\\preset.yml": "4546e9e6a6dddf47b781a8336ec63b17",
+    "zero-anchored-standard\\zero-tool-bootstrap.mjs": "ac43791b97575707751e0be2153b6f2f"
+  },
+  "folder_hashes": {
+    "zero-anchored-standard": "",
+    ".": "e0315b2e83abfd605b2c425487ef72bd",
+    "preset/capabilities": "",
+    "preset/router": "",
+    "preset/shell": "",
+    "preset/events": "",
+    "preset": "",
+    "preset/anchor": ""
+  }
+}

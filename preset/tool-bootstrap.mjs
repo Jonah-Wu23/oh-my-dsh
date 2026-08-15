@@ -1,4 +1,8 @@
 /**
+ * Legacy upstream bootstrap plugin retained for comparison tests.
+ * It is not mounted by the current oh-my-dsh preset; the active composition
+ * uses `minimal-surface.mjs` and keeps the model catalog fixed.
+ *
  * Anchored tool bootstrap — keep the FIRST model request on a small tool
  * surface, then expose the full preset catalog once the session has produced
  * its first durable promotion signal.

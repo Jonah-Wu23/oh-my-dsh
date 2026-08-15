@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>oh-my-dsh</title>
+    <style>
+      :root { color-scheme: dark; font-family: Inter, Segoe UI, sans-serif; background: #10131a; color: #edf2f7; }
+      body { margin: 0; min-height: 100vh; background: radial-gradient(circle at 20% 0%, #21304d 0, #10131a 42%); }
+      main { width: min(760px, calc(100% - 48px)); margin: 0 auto; padding: 52px 0 64px; }
+      h1 { margin: 0 0 8px; font-size: 34px; letter-spacing: -0.03em; }
+      .lead { color: #a9b8cc; margin: 0 0 28px; line-height: 1.6; }
+      section { background: rgba(20, 26, 38, .88); border: 1px solid #2b3850; border-radius: 16px; padding: 22px; margin-top: 16px; box-shadow: 0 18px 50px rgba(0,0,0,.2); }
+      label { display: block; font-size: 13px; color: #a9b8cc; margin: 14px 0 7px; }
+      input { box-sizing: border-box; width: 100%; border: 1px solid #3a4a67; border-radius: 10px; padding: 11px 12px; color: #f8fafc; background: #0f1624; font: inherit; }
+      button { border: 0; border-radius: 10px; padding: 11px 16px; margin: 16px 8px 0 0; color: #08111f; background: #7dd3fc; font-weight: 700; cursor: pointer; }
+      button:disabled { cursor: wait; opacity: .6; }
+      pre { white-space: pre-wrap; overflow-wrap: anywhere; margin: 14px 0 0; padding: 14px; border-radius: 10px; background: #080c14; color: #c7d2fe; }
+      .status { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 14px; }
+      .badge { padding: 9px; border-radius: 9px; background: #182337; color: #b7c6dc; font-size: 12px; }
+      .ok { color: #86efac; }
+      .missing { color: #fda4af; }
+      @media (max-width: 700px) { .status { grid-template-columns: repeat(2, 1fr); } main { width: min(100% - 28px, 760px); padding-top: 30px; } }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>oh-my-dsh</h1>
+      <p class="lead">This launcher starts the original DeepSeek Harness WebUI with the oh-my-dsh preset. The Tauri window is only the packaged launcher; it does not replace the Harness conversation surface.</p>
+      <section>
+        <strong>Bundled runtime</strong>
+        <div id="status" class="status"><div class="badge">Checking…</div></div>
+        <pre id="status-output">Checking packaged resources…</pre>
+      </section>
+      <section>
+        <strong>Open DeepSeek Harness WebUI</strong>
+        <label for="workspace">Workspace</label>
+        <input id="workspace" value="F:\\oh-my-dsh" />
+        <button id="launch">Open WebUI</button>
+        <pre id="output">The original DeepSeek Harness WebUI will open in this window.</pre>
+      </section>
+    </main>
+    <script>
+      const invoke = window.__TAURI__?.core?.invoke;
+      const statusEl = document.querySelector('#status');
+      const statusOutput = document.querySelector('#status-output');
+      const output = document.querySelector('#output');
+      const launchButton = document.querySelector('#launch');
+      const statusKeys = ['node', 'harness', 'oh_my_dsh', 'msys2_bash'];
+
+      function renderStatus(data) {
+        statusEl.innerHTML = statusKeys.map((key) => `<div class="badge ${data[key] ? 'ok' : 'missing'}">${key}: ${data[key] ? 'ready' : 'missing'}</div>`).join('');
+        statusOutput.textContent = `Resource directory: ${data.resource_dir}`;
+      }
+
+      async function refresh() {
+        if (!invoke) { statusOutput.textContent = 'Tauri IPC is unavailable. Build this page through the Tauri app.'; return false; }
+        try { renderStatus(await invoke('bundle_status')); return true; }
+        catch (error) { statusOutput.textContent = String(error); return false; }
+      }
+
+      launchButton.addEventListener('click', async () => {
+        launchButton.disabled = true;
+        output.textContent = 'Starting the DeepSeek Harness WebUI…';
+        try {
+          const result = await invoke('start_web', { workspace: document.querySelector('#workspace').value, port: 3080 });
+          output.textContent = `Opening ${result.url}…`;
+          window.location.replace(result.url);
+        } catch (error) {
+          output.textContent = String(error);
+          launchButton.disabled = false;
+        }
+      });
+
+      refresh();
+    </script>
+  </body>
+</html>

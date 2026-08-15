@@ -1,0 +1,6 @@
+# The web host remains DeepSeek Harness WebUI. This host-level patch only
+# selects the bundled oh-my-dsh agent preset for new WebUI sessions.
+- id: agent-presets
+  name: '@deepseek-ai/dsh-agent-presets'
+  config:
+    default: oh-my-dsh

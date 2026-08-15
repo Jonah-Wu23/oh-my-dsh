@@ -2,14 +2,17 @@
   "name": "dsh-anchored-standard",
   "version": "0.1.0",
   "private": true,
-  "description": "Two-phase DeepSeek Harness preset: Minimal-aligned bootstrap, then full Standard tools",
+  "description": "DeepSeek Harness preset with a fixed Minimal surface, Bash capabilities, and opt-in native bundles",
   "type": "module",
   "license": "MIT",
+  "bin": {
+    "dshx": "bin/dshx.mjs"
+  },
   "engines": {
     "node": ">=22.19.0"
   },
   "scripts": {
     "test": "node --test",
-    "check": "node --check preset/tool-bootstrap.mjs && node --test"
+    "check": "node --check preset/minimal-surface.mjs && node --check preset/zero-tool-bootstrap.mjs && node --check preset/tool-bootstrap.mjs && node --check preset/windows-msys2.mjs && node --check preset/capability-runtime.mjs && node --check preset/anchor/turn-anchor.mjs && node --check preset/capabilities/registry.mjs && node --check preset/capabilities/manifests.mjs && node --check preset/capabilities/surface.mjs && node --check preset/events/projections.mjs && node --check preset/events/recovery.mjs && node --check preset/router/controller.mjs && node --check preset/router/schema.mjs && node --check preset/router/snapshot.mjs && node --check preset/shell/path-map.mjs && node --check bin/dshx.mjs && node --test"
   }
 }

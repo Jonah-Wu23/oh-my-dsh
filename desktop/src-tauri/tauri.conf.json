@@ -1,0 +1,57 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "oh-my-dsh",
+  "version": "0.1.0",
+  "identifier": "com.ohmydsh.desktop",
+  "build": {
+    "frontendDist": "../ui"
+  },
+  "app": {
+    "withGlobalTauri": true,
+    "windows": [
+      {
+        "label": "main",
+        "title": "oh-my-dsh",
+        "width": 980,
+        "height": 760,
+        "minWidth": 760,
+        "minHeight": 560,
+        "resizable": true
+      }
+    ],
+    "security": {
+      "csp": null
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": ["nsis"],
+    "category": "DeveloperTool",
+    "shortDescription": "oh-my-dsh with DeepSeek Harness and MSYS2 Bash",
+    "longDescription": "A Tauri launcher bundling the oh-my-dsh preset, DeepSeek Harness runtime, Node.js, and MSYS2 Bash.",
+    "resources": {
+      "../resources/msys64.zip": "msys64.zip",
+      "../runtime/": "deepseek-harness/",
+      "../web-profile-patch.yml": "deepseek-harness/web-profile-patch.yml",
+      "../node.exe": "node.exe",
+      "../../preset/": "oh-my-dsh/preset/",
+      "../../bin/": "oh-my-dsh/bin/",
+      "../../package.json": "oh-my-dsh/package.json",
+      "../../README.md": "oh-my-dsh/README.md",
+      "../../README.zh-CN.md": "oh-my-dsh/README.zh-CN.md",
+      "../../LICENSE": "oh-my-dsh/LICENSE",
+      "../../NOTICE": "oh-my-dsh/NOTICE"
+    },
+    "windows": {
+      "webviewInstallMode": {
+        "type": "downloadBootstrapper",
+        "silent": true
+      },
+      "nsis": {
+        "installMode": "currentUser",
+        "displayLanguageSelector": true,
+        "compression": "lzma"
+      }
+    }
+  }
+}

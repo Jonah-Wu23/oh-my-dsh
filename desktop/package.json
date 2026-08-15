@@ -1,0 +1,15 @@
+{
+  "name": "oh-my-dsh-desktop",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Tauri launcher bundling oh-my-dsh, DeepSeek Harness, Node.js, and MSYS2",
+  "scripts": {
+    "tauri": "tauri",
+    "build": "tauri build --bundles nsis",
+    "dev": "tauri dev",
+    "prepare:resources": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/prepare-resources.ps1"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "2.11.0"
+  }
+}
